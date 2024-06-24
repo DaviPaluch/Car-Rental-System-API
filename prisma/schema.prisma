@@ -16,130 +16,19 @@ model user {
   email         String @unique
   password_hash String
 
-  notificacao notificacao[]
-  risco       risco[]
+  avatar avatar?
 }
 
-model risco {
-  id String @id @default(uuid())
-
-  impactoId String  @unique
-  impacto   impacto @relation(fields: [impactoId], references: [id])
-
-  estrategia_resolucaoId String
-  estrategia_resolucao   estrategia_resolucao @relation(fields: [estrategia_resolucaoId], references: [id])
-
-  userId String
-  user   user   @relation(fields: [userId], references: [id])
-
-  setorId String
-  setor   setor  @relation(fields: [setorId], references: [id])
-
-  plano_de_acaoId String?        @unique
-  plano_de_acao   plano_de_acao? @relation(fields: [plano_de_acaoId], references: [id])
-
-  status_riscoId String
-  status_risco   status_risco @relation(fields: [status_riscoId], references: [id])
-
-  titulo String
-  desc   String
-
-  notificacao notificacao[]
-}
-
-model status_risco {
-  id    String @id @default(uuid())
-  label String
-
-  risco risco[]
-}
-
-model notificacao {
-  id String @id @default(uuid())
-
-  riscoId String
-  risco   risco  @relation(fields: [riscoId], references: [id])
-
-  userId String
-  user   user   @relation(fields: [userId], references: [id])
-
-  titulo           String
-  nome             String
-  desc             String
-  dataEnvio        DateTime
-  dataVisualizacao DateTime
-  visualizado      Boolean
-}
-
-model plano_de_acao {
-  id String @id @default(uuid())
-
-  risco_residualId String         @unique
-  risco_residual   risco_residual @relation(fields: [risco_residualId], references: [id])
-
-  status_prazoId String
-  status_prazo   status_prazo @relation(fields: [status_prazoId], references: [id])
-
-  titulo           String
-  desc             String
-  dataAlerta       DateTime
-  tempoDeResolucao String
-  dataInicio       DateTime
-  dataPrevistaFim  DateTime
-  dataFim          DateTime
-  comentarios      String
-
-  risco risco?
-}
-
-model status_prazo {
-  id    String @id @default(uuid())
-  label String
-
-  plano_de_acao plano_de_acao[]
+model avatar {
+  id         String  @id @default(uuid())
+  userId     String  @unique
+  user       user    @relation(fields: [userId], references: [id])
+  nameFile   String?
+  avatarFile String?
+  typeFile   String?
 }
 
 model classificacao {
   id    String @id @default(uuid())
   label String @unique
-
-  impacto        impacto[]
-  risco_residual risco_residual[]
-}
-
-model risco_residual {
-  id String @id @default(uuid())
-
-  classificacaoId String
-  classificacao   classificacao @relation(fields: [classificacaoId], references: [id])
-
-  riscoMitigado Boolean
-  dataResolucao DateTime
-
-  plano_de_acao plano_de_acao?
-}
-
-model impacto {
-  id String @id @default(uuid())
-
-  classificacaoId String
-  classificacao   classificacao @relation(fields: [classificacaoId], references: [id])
-
-  desc String
-
-  risco risco?
-}
-
-model estrategia_resolucao {
-  id    String @id @default(uuid())
-  label String @unique
-
-  risco risco[]
-}
-
-model setor {
-  id    String @id @default(uuid())
-  label String
-
-  risco risco[]
 }

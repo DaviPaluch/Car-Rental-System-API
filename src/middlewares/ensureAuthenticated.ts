@@ -27,6 +27,10 @@ export async function ensureAuthenticated(req: Request, res: Response, next: Nex
       throw new AppError("Usuário não existe", 400);
     }
 
+    req.user = {
+      id: user.id
+    }
+
     next()
   } catch (error) {
     console.error(error)
