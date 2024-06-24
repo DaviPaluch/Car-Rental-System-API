@@ -1,0 +1,90 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Categorias",
+    "version": "1.0.0",
+    "description": "API para criação de categorias"
+  },
+  "paths": {
+    "/categories": {
+      "post": {
+        "summary": "Criar uma categoria",
+        "description": "Cria uma nova categoria",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Nome da categoria"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Descrição da categoria"
+                  }
+                },
+                "example": {
+                  "name": "Tecnologia",
+                  "description": "Categoria relacionada a artigos tecnológicos"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "ID da nova categoria"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Nome da categoria"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Descrição da categoria"
+                    }
+                  }
+                },
+                "example": {
+                  "id": 1,
+                  "name": "Tecnologia",
+                  "description": "Categoria relacionada a artigos tecnológicos"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Categoria existente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Descrição do erro"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "A categoria 'Tecnologia' já existe."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

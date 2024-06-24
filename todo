@@ -1,0 +1,27 @@
+[] Implementação de usuários.
+    [] Endpoint de Criação de Usuário:
+        [] Implementar endpoint para registrar novos usuários (POST /users).
+            [] Validar se o email é único antes de criar o usuário.
+            [] Hash de senha antes de salvar no banco de dados.
+        [] Validação de Dados
+            [] Implementar validação de formato para email
+            [] Verificar se os campos obrigatórios estão presentes (nome, email, senha, CPF).
+    [] Autenticação de Usuário
+        [] Endpoint de Login
+            [] Implementar endpoint para autenticação de usuários (POST /auth/login)
+            [] Verificar email e senha fornecidos
+            [] Gerar token JWT para usuários autenticados com sucesso
+        [] Middleware de Autenticação
+            [] Implementar middleware para verificar o token JWT em rotas protegidas
+            [] Adicionar middleware em endpoints que requerem autenticação
+    [] 
+    [] 
+    [] 
+    [] 
+    [] 
+    [] 
+    [] 
+    [] 
+    [] 
+    [] 
+    [] 
