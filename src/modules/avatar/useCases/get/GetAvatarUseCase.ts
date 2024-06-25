@@ -6,7 +6,7 @@ import { IAvatarRepository } from "../../repositories/IAvatarRepository";
 interface IRequest { id: string }
 
 @injectable()
-class GetClassificacaoUseCase {
+class GetAvatarUseCase {
 
   constructor(
     @inject("AvatarRepository")
@@ -18,4 +18,4 @@ class GetClassificacaoUseCase {
   }
 }
 
-export { GetClassificacaoUseCase };
+export { GetAvatarUseCase };
