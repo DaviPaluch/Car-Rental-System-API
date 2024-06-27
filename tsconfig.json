@@ -3,6 +3,7 @@
     "target": "ES2021",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "rootDir": "./",
     "module": "commonjs",
     "baseUrl": "./src",
     "paths": {
@@ -17,7 +18,7 @@
       ],
       "@err/*": [
         "err/*"
-      ],
+      ]
     },
     "resolveJsonModule": true,
     "outDir": "./dist",
