@@ -41,7 +41,7 @@ model car {
   desc            String
   daily_rate      Int
   available       Boolean        @default(true)
-  license_plate   String
+  license_plate   String         @unique
   fine_amount     Decimal
   brand           String
   classificacaoId String?

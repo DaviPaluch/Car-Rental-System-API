@@ -1,9 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 import { ICarRepository, ICreateCarDTO } from "../ICarRepository";
-import { car } from '@prisma/client';
 import { Decimal } from '@prisma/client/runtime/library';
 
-interface Car {
+class Car {
   id: string;
   name: string;
   desc: string;
@@ -18,18 +17,31 @@ interface Car {
 
 class CarRepositoryInMemory implements ICarRepository {
 
-  car: Car[] = [];
+  cars: Car[] = [];
 
-  create({ }: ICreateCarDTO): Promise<void> {
+  async create(data: ICreateCarDTO): Promise<void> {
+    const car = new Car()
+
+    Object.assign(car, {
+      name: data.name,
+      desc: data.desc,
+      daily_rate: data.daily_rate,
+      license_plate: data.license_plate,
+      fine_amount: data.fine_amount,
+      brand: data.brand,
+      classificacaoId: data.classificacaoId
+
+    })
+
+    this.cars.push(car)
+  }
+  async getById(id: string): Promise<{ id: string; name: string; desc: string; daily_rate: number; available: boolean; license_plate: string; fine_amount: Decimal; brand: string; classificacaoId: string; created_at: Date; }> {
     throw new Error('Method not implemented.');
   }
-  getById(id: string): Promise<{ id: string; name: string; desc: string; daily_rate: number; available: boolean; license_plate: string; fine_amount: Decimal; brand: string; classificacaoId: string; created_at: Date; }> {
+  async getByLicencePlate(license_plate: string): Promise<{ id: string; name: string; desc: string; daily_rate: number; available: boolean; license_plate: string; fine_amount: Decimal; brand: string; classificacaoId: string; created_at: Date; }> {
     throw new Error('Method not implemented.');
   }
-  getByName(label: string): Promise<{ id: string; name: string; desc: string; daily_rate: number; available: boolean; license_plate: string; fine_amount: Decimal; brand: string; classificacaoId: string; created_at: Date; }> {
-    throw new Error('Method not implemented.');
-  }
-  list(): Promise<{ id: string; name: string; desc: string; daily_rate: number; available: boolean; license_plate: string; fine_amount: Decimal; brand: string; classificacaoId: string; created_at: Date; }[]> {
+  async list(): Promise<{ id: string; name: string; desc: string; daily_rate: number; available: boolean; license_plate: string; fine_amount: Decimal; brand: string; classificacaoId: string; created_at: Date; }[]> {
     throw new Error('Method not implemented.');
   }
 

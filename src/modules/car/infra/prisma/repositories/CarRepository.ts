@@ -14,22 +14,37 @@ class CarRepository implements ICarRepository {
     this.prisma = new PrismaClient();
   }
 
-  async create({ label }: ICreateCarDTO): Promise<void> {
-    const exists = await this.prisma.classificacao.findUnique({ where: { label } })
+  async create({
+    brand, classificacaoId, daily_rate, desc, fine_amount, license_plate, name
+  }: ICreateCarDTO): Promise<void> {
+
+    const exists = await this.prisma.car.findUnique({ where: { license_plate } })
+
     if (exists) { throw new AppError("Carro já existente.") }
-    // await this.prisma.car.create({ data:{}})
+
+    await this.prisma.car.create({
+      data: {
+        brand,
+        daily_rate,
+        desc,
+        fine_amount,
+        license_plate,
+        name,
+        classificacaoId,
+      }
+    })
     return null
   }
 
   async getById(id): Promise<car> {
-    const classificacao = await this.prisma.car.findUnique({ where: { id } });
-    return classificacao;
+    const car = await this.prisma.car.findUnique({ where: { id } });
+    return car;
   }
 
-  // async getByName(name: string): Promise<car> {
-  //   const car = await this.prisma.car.findMany({ where: {  } });
-  //   return car;
-  // }
+  async getByLicencePlate(license_plate: string): Promise<car> {
+    const car = await this.prisma.car.findUnique({ where: { license_plate } });
+    return car;
+  }
 
   async list(): Promise<car[]> {
     const classificacao = await this.prisma.car.findMany();

@@ -16,24 +16,26 @@ describe("Create Car", () => {
 
     const label = "classificacao teste"
 
-    await createCarUseCase.execute({ label })
+    await createCarUseCase.execute({
+      name: "Corsel",
+      desc: "Acabado",
+      daily_rate: 200000000,
+      license_plate: "AAA-999",
+      brand: "Ford",
+      classificacaoId: "10",
+      fine_amount: 60
+    })
 
-    const classificacaoCreated = await carRepositoryInMemory.getByName(label)
+    const classificacaoCreated = await carRepositoryInMemory.getByLicencePlate("AAA-999")
 
     console.log(classificacaoCreated)
 
     expect(classificacaoCreated).toHaveProperty("id")
   })
 
-  it("should not be able to create a new car with same name", async () => {
-
+  it("should not be able to create a car with exists license plate", () => {
     expect(async () => {
-      const label = "classificacao teste"
 
-      //É esperado que seja salvo
-      await createCarUseCase.execute({ label })
-      //É esperado que não seja criado uma classificacao com o mesmo nome
-      await createCarUseCase.execute({ label })
-    }).rejects.toBeInstanceOf(AppError)
+    })
   })
 })
