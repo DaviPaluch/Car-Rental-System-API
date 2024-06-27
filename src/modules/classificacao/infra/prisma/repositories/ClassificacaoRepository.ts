@@ -1,8 +1,10 @@
 // CategoriesRepository.ts
 
 import { PrismaClient, classificacao } from "@prisma/client";
-import { IClassificacaoRepository, ICreateClassificacaoDTO, } from "../IClassificacaoRepository";
-import { AppError } from "../../../../err/AppError";
+
+
+import { IClassificacaoRepository, ICreateClassificacaoDTO } from "@modules/classificacao/repositories/IClassificacaoRepository";
+import { AppError } from "@shared/err/AppError";
 
 class ClassificacaoRepository implements IClassificacaoRepository {
   private prisma: PrismaClient;

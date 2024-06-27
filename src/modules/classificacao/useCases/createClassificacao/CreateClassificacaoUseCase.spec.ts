@@ -1,6 +1,6 @@
-import { AppError } from "@err/AppError"
 import { ClassificacaoRepositoryInMemory } from "@modules/classificacao/repositories/in-memory/ClassificacaoRepositoryInMemory"
 import { CreateClassificacaoUseCase } from "./CreateClassificacaoUseCase"
+import { AppError } from "@shared/err/AppError"
 
 let createClassificacaoUseCase: CreateClassificacaoUseCase
 let classificacaoRepositoryInMemory: ClassificacaoRepositoryInMemory

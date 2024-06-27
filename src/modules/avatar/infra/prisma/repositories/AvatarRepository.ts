@@ -1,7 +1,8 @@
 // CategoriesRepository.ts
 
+import { IAvatarRepository, ICreateAvatarDTO } from "@modules/avatar/repositories/IAvatarRepository";
 import { PrismaClient, avatar } from "@prisma/client";
-import { IAvatarRepository, ICreateAvatarDTO } from "../IAvatarRepository";
+
 
 class AvatarRepository implements IAvatarRepository {
   private prisma: PrismaClient;

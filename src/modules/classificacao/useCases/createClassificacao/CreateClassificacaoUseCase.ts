@@ -2,7 +2,7 @@
 import "reflect-metadata"
 import { inject, injectable } from "tsyringe";
 import { IClassificacaoRepository } from "../../repositories/IClassificacaoRepository";
-import { AppError } from "../../../../err/AppError";
+import { AppError } from "@shared/err/AppError";
 
 interface IRequest { label: string }
 

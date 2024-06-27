@@ -1,7 +1,7 @@
 // CreateCategoryUseCase.ts
 
+import { ClassificacaoRepository } from "@modules/classificacao/infra/prisma/repositories/ClassificacaoRepository";
 import { classificacao } from "@prisma/client";
-import { ClassificacaoRepository } from "../../repositories/implementations/ClassificacaoRepository";
 import { inject, injectable } from "tsyringe";
 
 interface IRequest { }

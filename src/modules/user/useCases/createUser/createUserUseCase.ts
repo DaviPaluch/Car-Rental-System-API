@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe"
 import { ICreateUserDTO, IUserRepository } from '../../repositories/IUserRepository'
 import { hash } from "bcrypt"
-import { AppError } from "../../../../err/AppError"
+import { AppError } from "@shared/err/AppError"
 
 interface IRequest {
   name: string,

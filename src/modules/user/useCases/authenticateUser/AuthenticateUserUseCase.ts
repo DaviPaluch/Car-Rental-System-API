@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { IUserRepository } from "../../repositories/IUserRepository";
 import { compare } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
-import { AppError } from "../../../../err/AppError";
+import { AppError } from "@shared/err/AppError";
 
 interface IRequest {
   email: string,
@@ -10,12 +10,12 @@ interface IRequest {
 }
 interface IResponse {
   user: {
-    id:string,
+    id: string,
     name: string,
     email: string
   }
   token: string,
-  status:string
+  status: string
 }
 
 @injectable()
@@ -39,7 +39,7 @@ class AuthenticateUserUseCase {
       expiresIn: "1d"
     })
 
-    return { user: { id: user.id,name: user.name, email: user.email }, token, status:"200" }
+    return { user: { id: user.id, name: user.name, email: user.email }, token, status: "200" }
   }
 }
 
