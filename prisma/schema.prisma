@@ -31,4 +31,20 @@ model avatar {
 model classificacao {
   id    String @id @default(uuid())
   label String @unique
+
+  car car[]
+}
+
+model car {
+  id              String         @id @default(uuid())
+  name            String
+  desc            String
+  daily_rate      Int
+  available       Boolean        @default(true)
+  license_plate   String
+  fine_amount     Decimal
+  brand           String
+  classificacaoId String?
+  classificacao   classificacao? @relation(fields: [classificacaoId], references: [id])
+  created_at      DateTime       @default(now())
 }
