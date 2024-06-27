@@ -1,8 +1,8 @@
 // categories.routes.ts
 import { Router } from "express";
-import { ListClassificacaoController } from "../modules/classificacao/useCases/listClassificacao/ListClassificacaoController";
-import { GetClassificacaoController } from "../modules/classificacao/useCases/getClassificacao/GetClassificacaoController";
-import { CreateClassificacaoController } from "../modules/classificacao/useCases/createClassificacao/CreateClassificacaoController";
+import { ListClassificacaoController } from "@modules/classificacao/useCases/listClassificacao/ListClassificacaoController";
+import { GetClassificacaoController } from "@modules/classificacao/useCases/getClassificacao/GetClassificacaoController";
+import { CreateClassificacaoController } from "@modules/classificacao/useCases/createClassificacao/CreateClassificacaoController";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 const classificacaoRoutes = Router();

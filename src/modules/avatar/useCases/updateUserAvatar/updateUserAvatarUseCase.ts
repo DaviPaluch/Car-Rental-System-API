@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe"
-import { IAvatarRepository } from "../../repositories/IAvatarRepository"
+import { IAvatarRepository } from "@modules/avatar/repositories/IAvatarRepository"
 
 interface IRequest {
   userId: string,

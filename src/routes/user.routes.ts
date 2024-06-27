@@ -1,9 +1,9 @@
 // user.routes.ts
 import { Router } from "express";
 import multer from "multer";
-import { CreateUserCrontroller } from "../modules/user/useCases/createUser/createUserController";
-import { UpdateUserAvatarController } from "../modules/avatar/useCases/updateUserAvatar/updateUserAvatarController";
-import uploadConfig from "../config/upload";
+import { CreateUserCrontroller } from "@modules/user/useCases/createUser/createUserController";
+import { UpdateUserAvatarController } from "@modules/avatar/useCases/updateUserAvatar/updateUserAvatarController";
+import uploadConfig from "@config/upload";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 const userRoutes = Router();
