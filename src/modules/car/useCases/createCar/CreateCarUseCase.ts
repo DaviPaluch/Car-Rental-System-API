@@ -32,7 +32,7 @@ class CreateCarUseCase {
   }: IRequest): Promise<void> {
     const exists = await this.carRepository.getByLicencePlate(license_plate)
 
-    if (exists) { throw new AppError("Categoria já existente") }
+    if (exists) { throw new AppError("Carro já está cadastrado") }
 
     await this.carRepository.create({
       name,

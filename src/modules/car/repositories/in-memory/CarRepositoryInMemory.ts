@@ -9,10 +9,16 @@ class Car {
   daily_rate: number;
   available: boolean;
   license_plate: string;
-  fine_amount: number;
+  fine_amount: Decimal;
   brand: string;
   classificacaoId: string;
   created_at: Date;
+
+  constructor() {
+    this.id = uuidv4();
+    this.available = true;
+    this.created_at = new Date();
+  }
 }
 
 class CarRepositoryInMemory implements ICarRepository {
@@ -29,17 +35,16 @@ class CarRepositoryInMemory implements ICarRepository {
       license_plate: data.license_plate,
       fine_amount: data.fine_amount,
       brand: data.brand,
-      classificacaoId: data.classificacaoId
-
-    })
-
-    this.cars.push(car)
+      classificacaoId: data.classificacaoId,
+    });
+    this.cars.push(car);
   }
   async getById(id: string): Promise<{ id: string; name: string; desc: string; daily_rate: number; available: boolean; license_plate: string; fine_amount: Decimal; brand: string; classificacaoId: string; created_at: Date; }> {
     throw new Error('Method not implemented.');
   }
   async getByLicencePlate(license_plate: string): Promise<{ id: string; name: string; desc: string; daily_rate: number; available: boolean; license_plate: string; fine_amount: Decimal; brand: string; classificacaoId: string; created_at: Date; }> {
-    throw new Error('Method not implemented.');
+    const car = this.cars.find((car) => car.license_plate === license_plate)
+    return car
   }
   async list(): Promise<{ id: string; name: string; desc: string; daily_rate: number; available: boolean; license_plate: string; fine_amount: Decimal; brand: string; classificacaoId: string; created_at: Date; }[]> {
     throw new Error('Method not implemented.');
