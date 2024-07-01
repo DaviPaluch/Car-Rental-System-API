@@ -66,6 +66,26 @@ describe("List Cars", () => {
       name: "Corsel"
     })
 
+    // console.log(cars)
+
+    expect(cars).toEqual([car])
+  })
+
+  it("shout be able to list all available cars by classificacao", async () => {
+    const car = await carRepositoryInMemory.create({
+      "name": "Camaro SS",
+      "desc": "Old Scholl",
+      "daily_rate": 150,
+      "license_plate": "AAAAAA",
+      "fine_amount": 100.00,
+      "brand": "Ford",
+      "classificacaoId": "777"
+    })
+
+    const cars = await listCarUseCase.execute({
+      classificationId: "777"
+    })
+
     console.log(cars)
 
     expect(cars).toEqual([car])
