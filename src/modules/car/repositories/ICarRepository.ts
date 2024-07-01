@@ -15,10 +15,15 @@ interface ICreateCarDTO {
 
 
 interface ICarRepository {
-  create({ }: ICreateCarDTO): Promise<void>
+  create({ }: ICreateCarDTO): Promise<car>
   getById(id: string): Promise<car | null>
   getByLicencePlate(license_plate: string): Promise<car>
   list(): Promise<car[]>
+  findAvailable(
+    classificationId?: string,
+    brand?: string,
+    name?: string
+  ): Promise<car[]>
 }
 
 export { ICarRepository, ICreateCarDTO }

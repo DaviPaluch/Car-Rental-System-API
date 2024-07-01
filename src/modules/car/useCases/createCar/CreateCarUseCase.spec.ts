@@ -27,7 +27,7 @@ describe("Create Car", () => {
 
     const carCreated = await carRepositoryInMemory.getByLicencePlate("AAA-999")
 
-    console.log(carCreated)
+    // console.log(carCreated)
 
     expect(carCreated).toHaveProperty("id")
   })

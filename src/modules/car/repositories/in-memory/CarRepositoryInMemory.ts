@@ -23,9 +23,10 @@ class Car {
 
 class CarRepositoryInMemory implements ICarRepository {
 
+
   cars: Car[] = [];
 
-  async create(data: ICreateCarDTO): Promise<void> {
+  async create(data: ICreateCarDTO): Promise<{ id: string; name: string; desc: string; daily_rate: number; available: boolean; license_plate: string; fine_amount: Decimal; brand: string; classificacaoId: string; created_at: Date; }> {
     const car = new Car()
 
     Object.assign(car, {
@@ -38,6 +39,8 @@ class CarRepositoryInMemory implements ICarRepository {
       classificacaoId: data.classificacaoId,
     });
     this.cars.push(car);
+
+    return car
   }
   async getById(id: string): Promise<{ id: string; name: string; desc: string; daily_rate: number; available: boolean; license_plate: string; fine_amount: Decimal; brand: string; classificacaoId: string; created_at: Date; }> {
     throw new Error('Method not implemented.');
@@ -49,10 +52,29 @@ class CarRepositoryInMemory implements ICarRepository {
   async list(): Promise<{ id: string; name: string; desc: string; daily_rate: number; available: boolean; license_plate: string; fine_amount: Decimal; brand: string; classificacaoId: string; created_at: Date; }[]> {
     throw new Error('Method not implemented.');
   }
+  async findAvailable(
+    classificationId?: string,
+    brand?: string,
+    name?: string
+  ): Promise<{ id: string; name: string; desc: string; daily_rate: number; available: boolean; license_plate: string; fine_amount: Decimal; brand: string; classificacaoId: string; created_at: Date; }[]> {
+    const all = this.cars
+      .filter((car) => car.available === true)
+      .filter((car) => {
+        if (car.available === true ||
+          ((brand && car.brand === brand) ||
+            (classificationId && car.classificacaoId === classificationId) ||
+            (name && car.name === name))
+        ) {
+          return car
+        }
+        return null
+      })
+    return all
+  }
 
 
 
 
 }
 
-export { CarRepositoryInMemory }
+export { CarRepositoryInMemory, Car }
