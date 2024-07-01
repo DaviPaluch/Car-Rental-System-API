@@ -7,6 +7,8 @@ import { ClassificacaoRepository } from "@modules/classificacao/infra/prisma/rep
 import { AvatarRepository } from "@modules/avatar/infra/prisma/repositories/AvatarRepository";
 import { ICarRepository } from "@modules/car/repositories/ICarRepository";
 import { CarRepository } from "@modules/car/infra/prisma/repositories/CarRepository";
+import { ICarImageRepository } from "@modules/car/repositories/ICarImageRepository ";
+import { CarImageRepository } from "@modules/car/infra/prisma/repositories/CarImageRepository ";
 
 container.registerSingleton<IClassificacaoRepository>(
   "ClassificacaoRepository",
@@ -23,4 +25,8 @@ container.registerSingleton<IAvatarRepository>(
 container.registerSingleton<ICarRepository>(
   "CarRepository",
   CarRepository
+);
+container.registerSingleton<ICarImageRepository>(
+  "CarImageRepository",
+  CarImageRepository
 );
