@@ -16,13 +16,13 @@ class CarRepository implements ICarRepository {
 
   async create({
     brand, classificacaoId, daily_rate, desc, fine_amount, license_plate, name
-  }: ICreateCarDTO): Promise<void> {
+  }: ICreateCarDTO): Promise<car> {
 
     const exists = await this.prisma.car.findUnique({ where: { license_plate } })
 
     if (exists) { throw new AppError("Carro já existente.") }
 
-    await this.prisma.car.create({
+    const car = await this.prisma.car.create({
       data: {
         brand,
         daily_rate,
@@ -33,7 +33,7 @@ class CarRepository implements ICarRepository {
         classificacaoId,
       }
     })
-    return null
+    return car
   }
 
   async getById(id): Promise<car> {
@@ -50,6 +50,38 @@ class CarRepository implements ICarRepository {
     const classificacao = await this.prisma.car.findMany();
     return classificacao;
   }
+
+  async findAvailable(classificationId?: string, brand?: string, name?: string): Promise<car[]> {
+    const conditions: any = [];
+    conditions.push({ available: true })
+
+    if (name) {
+      conditions.push({ name });
+    }
+
+    if (brand) {
+      conditions.push({ brand });
+    }
+
+    if (classificationId) {
+      conditions.push({
+        classification: {
+          id: classificationId
+        }
+      });
+    }
+
+    return await this.prisma.car.findMany({
+      where: {
+        AND: conditions,
+      },
+      include: {
+        classificacao: true,
+      },
+    });
+  }
+
 }
+
 
 export { CarRepository };

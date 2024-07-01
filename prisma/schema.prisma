@@ -48,4 +48,16 @@ model car {
   classificacaoId String?
   classificacao   classificacao? @relation(fields: [classificacaoId], references: [id])
   created_at      DateTime       @default(now())
+
+  car_image car_image[]
+}
+
+model car_image {
+  id String @id @default(uuid())
+
+  carId String
+  car   car    @relation(fields: [carId], references: [id])
+
+  image_name String
+  created_at DateTime @default(now())
 }
