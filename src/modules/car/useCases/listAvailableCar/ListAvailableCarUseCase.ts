@@ -1,3 +1,4 @@
+import "reflect-metadata"
 import { ICarRepository } from "@modules/car/repositories/ICarRepository";
 import { car } from "@prisma/client";
 import { inject, injectable } from "tsyringe";

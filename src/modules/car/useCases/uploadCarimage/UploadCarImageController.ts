@@ -6,7 +6,6 @@ interface IFiles {
   filename: string
 }
 
-
 class UploadCarImageController {
   async handle(req: Request, res: Response): Promise<Response> {
 
@@ -22,3 +21,5 @@ class UploadCarImageController {
     return res.status(201).send()
   }
 }
+
+export { UploadCarImageController }
